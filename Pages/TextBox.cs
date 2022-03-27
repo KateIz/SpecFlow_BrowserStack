@@ -24,7 +24,7 @@ namespace Pages
 
 
 
-        public bool OpenHomePage()
+        public bool OpenTextBoxPage()
             {
                 string url = "https://demoqa.com/";
                 driver.Navigate().GoToUrl(url);

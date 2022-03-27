@@ -16,7 +16,7 @@ namespace Steps
         [Given(@"Go to page")]
         public void GivenGoToPage()
         {
-            Assert.IsTrue(textbox_page.OpenHomePage());
+            Assert.IsTrue(textbox_page.OpenTextBoxPage());
         }
 
        
