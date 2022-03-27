@@ -9,7 +9,7 @@ using System.Threading;
 namespace Pages
 {
    [Binding]
-    public class HomePage
+    public class TextBox
     {
         IWebDriver driver = new ChromeDriver();
         private IWebElement BtnElements => driver.FindElement(By.XPath("//*[text()='Elements']"));
@@ -116,6 +116,7 @@ namespace Pages
             {
                 isValid = false;
             }
+            driver.Quit(); 
             return isValid;
 
         }

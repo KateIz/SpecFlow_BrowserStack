@@ -14,11 +14,6 @@ Scenario: Open the HomePage
 
 
 
-#1. zamykanie chromeWebdriver
-#2. zamykanie strony
-#3. zmienic nazwę feature file
-#4. stworzyc klase init webdrider
-#5. otwierać przeglądarkę zmakwsymilizowaną w trybie incognito
-#6.
+
 	
 	

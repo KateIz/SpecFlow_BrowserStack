@@ -9,57 +9,58 @@ using Pages;
 namespace Steps
 {
     [Binding]
-    public sealed class HomePageSteps
+    public sealed class TextBoxSteps
     {
 
-        HomePage home_page = new HomePage();
+        TextBox textbox_page = new TextBox();
         [Given(@"Go to page")]
         public void GivenGoToPage()
         {
-            Assert.IsTrue(home_page.OpenHomePage());
+            Assert.IsTrue(textbox_page.OpenHomePage());
         }
 
        
         [Then(@"I should see DemoQA page")]
         public void ThenIShouldSeeDemoQAPage()
         {
-            Assert.IsTrue(home_page.VerifyUrl());
+            Assert.IsTrue(textbox_page.VerifyUrl());
         }
 
         [When(@"I click Text box section")]
         public void WhenIClickTextBoxSection()
         {
-            home_page.ClickTextBox();
+            textbox_page.ClickTextBox();
         }
 
         [When(@"I fill in the form")]
         public void WhenIFillInTheForm()
         {
-            home_page.FillTheForm();
+            textbox_page.FillTheForm();
         }
 
         [When(@"I click Submit")]
         public void WhenIClickSubmit()
         {
-            home_page.ClickSubmit();
+            textbox_page.ClickSubmit();
         }
 
         [Then(@"I should see the Name in the form Name")]
         public void ThenIShouldSeeTheNameInTheFormName()
         {
-            Assert.IsTrue(home_page.VerifyTheFormName());
+            Assert.IsTrue(textbox_page.VerifyTheFormName());
         }
 
         [Then(@"I should see the Email in the form Email")]
         public void ThenIShouldSeeTheEmailInTheFormEmail()
         {
-            Assert.IsTrue(home_page.VerifyTheFormEmail());
+            Assert.IsTrue(textbox_page.VerifyTheFormEmail());
         }
 
         [Then(@"I should see the Adress in the form Adress")]
         public void ThenIShouldSeeTheAdressInTheFormAdress()
         {
-            Assert.IsTrue(home_page.VerifyTheFormAdress());
+            Assert.IsTrue(textbox_page.VerifyTheFormAdress());
+            
         }
     }
 
