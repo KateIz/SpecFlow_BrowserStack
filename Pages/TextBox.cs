@@ -3,15 +3,17 @@ using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
-
-
+using OpenQA.Selenium.Remote;
+using System.Collections.Generic;
+using OpenQA.Selenium.Support.UI;
 
 namespace Pages
 {
-   [Binding]
+    [Binding]
     public class TextBox
     {
-        IWebDriver driver = new ChromeDriver();
+        private IWebDriver driver;
+
         private IWebElement BtnElements => driver.FindElement(By.XPath("//*[text()='Elements']"));
         private IWebElement BtnTextBox => driver.FindElement(By.XPath("//*[text()='Text Box']"));
         private IWebElement InputBoxFullName => driver.FindElement(By.XPath("//*[@id='userName']"));
@@ -22,40 +24,52 @@ namespace Pages
         private IWebElement EmailSummary => driver.FindElement(By.XPath("//*[@id='email']"));
         private IWebElement AdressSummary => driver.FindElement(By.XPath("//p[@id='currentAddress']"));
 
-
-
         public bool OpenTextBoxPage()
+        {
+            ChromeOptions capabilities = new ChromeOptions();
+            capabilities.BrowserVersion = "latest";
+            Dictionary<string, object> browserstackOptions = new Dictionary<string, object>();
+            browserstackOptions.Add("os", "Windows");
+            browserstackOptions.Add("osVersion", "10");
+            browserstackOptions.Add("projectName", "TrainingProject");
+            browserstackOptions.Add("buildName", "MyBuild");
+            browserstackOptions.Add("sessionName", "MyName");
+            browserstackOptions.Add("local", "false");
+            browserstackOptions.Add("seleniumVersion", "4.0.0");
+            browserstackOptions.Add("userName", "katerynaizviekov_TORzX2");
+            browserstackOptions.Add("accessKey", "bgVtEU3TcPUe5khziVkT");
+            capabilities.AddAdditionalOption("bstack:options", browserstackOptions);
+            driver = new RemoteWebDriver(new Uri("https://hub-cloud.browserstack.com/wd/hub/"), capabilities);
+            string url = "https://demoqa.com/";
+            driver.Navigate().GoToUrl(url);
+            return true;
+        }
+
+        public bool VerifyUrl()
+        {
+            String page_url = driver.Url;
+            string url = "https://demoqa.com/";
+
+            bool isValid;
+            if (page_url.Contains(url))
             {
-                string url = "https://demoqa.com/";
-                driver.Navigate().GoToUrl(url);
-                return true;
+                isValid = true;
+            }
+            else
+            {
+                isValid = false;
             }
 
-            public bool VerifyUrl()
-            {
-                String page_url = driver.Url;
-                string url = "https://demoqa.com/";
+            return isValid;
 
-                bool isValid;
-                if (page_url.Contains(url))
-                {
-                    isValid = true;
-                }
-                else
-                {
-                    isValid = false;
-                }
-            
-            return isValid;  
-            
-            }
+        }
         public void ClickTextBox()
         {
             BtnElements.Click();
             BtnTextBox.Click();
         }
 
-        public void FillTheForm ()
+        public void FillTheForm()
         {
             InputBoxFullName.SendKeys("Kateryna Izviekova");
             InputBoxEmail.SendKeys("katizvekova@gmail.com");
@@ -80,7 +94,7 @@ namespace Pages
             {
                 isValid = false;
             }
-        return isValid;
+            return isValid;
 
         }
 
@@ -116,7 +130,7 @@ namespace Pages
             {
                 isValid = false;
             }
-            driver.Quit(); 
+            driver.Quit();
             return isValid;
 
         }
