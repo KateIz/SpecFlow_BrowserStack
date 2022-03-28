@@ -9,12 +9,18 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Pages
 {
-    [Binding]
-    public class TextBox
+    public class TextBoxPage
     {
         private IWebDriver _driver;
 
+        public TextBoxPage(IWebDriver driver)
+        {
+            _driver = driver;
+        }
 
+        //public TextBoxPage()
+        //{
+        //}
 
         private IWebElement BtnElements => _driver.FindElement(By.XPath("//*[text()='Elements']"));
         private IWebElement BtnTextBox => _driver.FindElement(By.XPath("//*[text()='Text Box']"));

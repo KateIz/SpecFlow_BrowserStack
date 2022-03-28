@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using BoDi;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SpecFlowNewProject.Drivers;
 using System;
@@ -9,22 +10,25 @@ using TechTalk.SpecFlow;
 namespace SpecFlowNewProject.Hooks
 {
     [Binding]
-    public class MyHooks
+    public sealed class MyHooks
     {
-        private ScenarioContext _scenarioContext;
+       // private ScenarioContext _scenarioContext;
         public static IWebDriver _driver;
+        private readonly IObjectContainer objectContainer;
 
-        public MyHooks(ScenarioContext scenarioContext)
+        public MyHooks(IObjectContainer objectContainer)
         {
-            _scenarioContext = scenarioContext;
+            //_scenarioContext = scenarioContext;
+            this.objectContainer = objectContainer;
         }
 
         [BeforeScenario]
-        private static IWebDriver InitializeChromeWebDriver()
+        private void InitializeChromeWebDriver()
         {
-            //WebDriver driver = new ChromeDriver();
+            //string testcaseName = _scenarioContext.ScenarioInfo.Title;
             _driver = DriverSelectionAndInitialization.WebDriver();
-            return _driver;
+            objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
+            //return _driver;
         }
     }
 }

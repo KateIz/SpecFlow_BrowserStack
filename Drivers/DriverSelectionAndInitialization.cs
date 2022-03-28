@@ -14,7 +14,7 @@ namespace SpecFlowNewProject.Drivers
         public static IWebDriver WebDriver()
         {
             _driver = new ChromeDriver();
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            //_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _driver.Manage().Window.Maximize();
             return _driver;
         }
