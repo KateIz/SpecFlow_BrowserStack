@@ -11,8 +11,15 @@ namespace Steps
     [Binding]
     public sealed class TextBoxSteps
     {
+        //private IWebDriver driver;
+        private IWebDriver _driver;
+        public TextBoxSteps(IWebDriver driver)
+        {
+            _driver = driver;   
+        }
 
         TextBox textbox_page = new TextBox();
+
         [Given(@"Go to page")]
         public void GivenGoToPage()
         {

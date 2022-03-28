@@ -12,42 +12,44 @@ namespace Pages
     [Binding]
     public class TextBox
     {
-        private IWebDriver driver;
+        private IWebDriver _driver;
 
-        private IWebElement BtnElements => driver.FindElement(By.XPath("//*[text()='Elements']"));
-        private IWebElement BtnTextBox => driver.FindElement(By.XPath("//*[text()='Text Box']"));
-        private IWebElement InputBoxFullName => driver.FindElement(By.XPath("//*[@id='userName']"));
-        private IWebElement InputBoxEmail => driver.FindElement(By.XPath("//*[@id='userEmail']"));
-        private IWebElement InputBoxCurrentAdress => driver.FindElement(By.XPath("//*[@id='currentAddress']"));
-        private IWebElement BtnSubmit => driver.FindElement(By.XPath("//*[@id='submit']"));
-        public IWebElement NameSummary => driver.FindElement(By.XPath("//*[@id='name']"));
-        private IWebElement EmailSummary => driver.FindElement(By.XPath("//*[@id='email']"));
-        private IWebElement AdressSummary => driver.FindElement(By.XPath("//p[@id='currentAddress']"));
+
+
+        private IWebElement BtnElements => _driver.FindElement(By.XPath("//*[text()='Elements']"));
+        private IWebElement BtnTextBox => _driver.FindElement(By.XPath("//*[text()='Text Box']"));
+        private IWebElement InputBoxFullName => _driver.FindElement(By.XPath("//*[@id='userName']"));
+        private IWebElement InputBoxEmail => _driver.FindElement(By.XPath("//*[@id='userEmail']"));
+        private IWebElement InputBoxCurrentAdress => _driver.FindElement(By.XPath("//*[@id='currentAddress']"));
+        private IWebElement BtnSubmit => _driver.FindElement(By.XPath("//*[@id='submit']"));
+        public IWebElement NameSummary => _driver.FindElement(By.XPath("//*[@id='name']"));
+        private IWebElement EmailSummary => _driver.FindElement(By.XPath("//*[@id='email']"));
+        private IWebElement AdressSummary => _driver.FindElement(By.XPath("//p[@id='currentAddress']"));
 
         public bool OpenTextBoxPage()
         {
-            ChromeOptions capabilities = new ChromeOptions();
-            capabilities.BrowserVersion = "latest";
-            Dictionary<string, object> browserstackOptions = new Dictionary<string, object>();
-            browserstackOptions.Add("os", "Windows");
-            browserstackOptions.Add("osVersion", "10");
-            browserstackOptions.Add("projectName", "TrainingProject");
-            browserstackOptions.Add("buildName", "MyBuild");
-            browserstackOptions.Add("sessionName", "MyName");
-            browserstackOptions.Add("local", "false");
-            browserstackOptions.Add("seleniumVersion", "4.0.0");
-            browserstackOptions.Add("userName", "katerynaizviekov_TORzX2");
-            browserstackOptions.Add("accessKey", "bgVtEU3TcPUe5khziVkT");
-            capabilities.AddAdditionalOption("bstack:options", browserstackOptions);
-            driver = new RemoteWebDriver(new Uri("https://hub-cloud.browserstack.com/wd/hub/"), capabilities);
+            //ChromeOptions capabilities = new ChromeOptions();
+            //capabilities.BrowserVersion = "latest";
+            //Dictionary<string, object> browserstackOptions = new Dictionary<string, object>();
+            //browserstackOptions.Add("os", "Windows");
+            //browserstackOptions.Add("osVersion", "10");
+            //browserstackOptions.Add("projectName", "TrainingProject");
+            //browserstackOptions.Add("buildName", "MyBuild");
+            //browserstackOptions.Add("sessionName", "MyName");
+            //browserstackOptions.Add("local", "false");
+            //browserstackOptions.Add("seleniumVersion", "4.0.0");
+            //browserstackOptions.Add("userName", "katerynaizviekov_TORzX2");
+            //browserstackOptions.Add("accessKey", "bgVtEU3TcPUe5khziVkT");
+            //capabilities.AddAdditionalOption("bstack:options", browserstackOptions);
+            //driver = new RemoteWebDriver(new Uri("https://hub-cloud.browserstack.com/wd/hub/"), capabilities);
             string url = "https://demoqa.com/";
-            driver.Navigate().GoToUrl(url);
+            _driver.Navigate().GoToUrl(url);
             return true;
         }
 
         public bool VerifyUrl()
         {
-            String page_url = driver.Url;
+            String page_url = _driver.Url;
             string url = "https://demoqa.com/";
 
             bool isValid;
@@ -130,7 +132,7 @@ namespace Pages
             {
                 isValid = false;
             }
-            driver.Quit();
+            _driver.Quit();
             return isValid;
 
         }
