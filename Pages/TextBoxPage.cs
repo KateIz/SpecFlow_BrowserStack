@@ -12,12 +12,13 @@ namespace Pages
     public class TextBoxPage
     {
         private IWebDriver _driver;
+        
 
         public TextBoxPage(IWebDriver driver)
         {
             _driver = driver;
         }
-
+        
         private IWebElement BtnElements => _driver.FindElement(By.XPath("//*[text()='Elements']"));
         private IWebElement BtnTextBox => _driver.FindElement(By.XPath("//*[text()='Text Box']"));
         private IWebElement InputBoxFullName => _driver.FindElement(By.XPath("//*[@id='userName']"));
