@@ -14,29 +14,9 @@ namespace Steps
     {
         TextBoxPage textBoxPage;
 
-        //private IWebDriver driver;
-        //private IWebDriver _driver;
         public TextBoxSteps(IWebDriver driver):base(driver)
         {
             textBoxPage = new TextBoxPage(_driver);
-            _driver = driver;
-            
-        }
-        //TextBoxPage textboxpage = new TextBoxPage();
-
-
-        [Given(@"Go to page")]
-        public void GivenGoToPage()
-        {
-            //_driver.Navigate().GoToUrl("www.demoqa.com");
-            Assert.IsTrue(textBoxPage.OpenTextBoxPage());
-        }
-
-       
-        [Then(@"I should see DemoQA page")]
-        public void ThenIShouldSeeDemoQAPage()
-        {
-            Assert.IsTrue(textBoxPage.VerifyUrl());
         }
 
         [When(@"I click Text box section")]
@@ -73,7 +53,6 @@ namespace Steps
         public void ThenIShouldSeeTheAdressInTheFormAdress()
         {
             Assert.IsTrue(textBoxPage.VerifyTheFormAdress());
-            
         }
     }
 

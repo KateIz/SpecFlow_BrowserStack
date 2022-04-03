@@ -12,8 +12,8 @@ namespace SpecFlowNewProject.Hooks
     [Binding]
     public sealed class MyHooks
     {
-       // private ScenarioContext _scenarioContext;
-        public static IWebDriver _driver;
+        // private ScenarioContext _scenarioContext;
+        private IWebDriver _driver;
         private readonly IObjectContainer objectContainer;
 
         public MyHooks(IObjectContainer objectContainer)
@@ -25,10 +25,14 @@ namespace SpecFlowNewProject.Hooks
         [BeforeScenario]
         private void InitializeChromeWebDriver()
         {
-            //string testcaseName = _scenarioContext.ScenarioInfo.Title;
             _driver = DriverSelectionAndInitialization.WebDriver();
             objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
-            //return _driver;
+        }
+
+        [AfterScenario]
+        private void CloseWebDriver()
+        {
+            _driver.Quit();
         }
     }
 }
