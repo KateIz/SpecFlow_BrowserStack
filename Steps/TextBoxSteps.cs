@@ -5,62 +5,54 @@ using OpenQA.Selenium.Chrome;
 using System.Threading;
 using NUnit.Framework;
 using Pages;
+using SpecFlowNewProject.Hooks;
 
 namespace Steps
 {
     [Binding]
-    public sealed class TextBoxSteps
+    public sealed class TextBoxSteps : BaseSteps
     {
+        TextBoxPage textBoxPage;
 
-        TextBox textbox_page = new TextBox();
-        [Given(@"Go to page")]
-        public void GivenGoToPage()
+        public TextBoxSteps(IWebDriver driver):base(driver)
         {
-            Assert.IsTrue(textbox_page.OpenTextBoxPage());
-        }
-
-       
-        [Then(@"I should see DemoQA page")]
-        public void ThenIShouldSeeDemoQAPage()
-        {
-            Assert.IsTrue(textbox_page.VerifyUrl());
+            textBoxPage = new TextBoxPage(_driver);
         }
 
         [When(@"I click Text box section")]
         public void WhenIClickTextBoxSection()
         {
-            textbox_page.ClickTextBox();
+            textBoxPage.ClickTextBox();
         }
 
         [When(@"I fill in the form")]
         public void WhenIFillInTheForm()
         {
-            textbox_page.FillTheForm();
+            textBoxPage.FillTheForm();
         }
 
         [When(@"I click Submit")]
         public void WhenIClickSubmit()
         {
-            textbox_page.ClickSubmit();
+            textBoxPage.ClickSubmit();
         }
 
         [Then(@"I should see the Name in the form Name")]
         public void ThenIShouldSeeTheNameInTheFormName()
         {
-            Assert.IsTrue(textbox_page.VerifyTheFormName());
+            Assert.IsTrue(textBoxPage.VerifyTheFormName());
         }
 
         [Then(@"I should see the Email in the form Email")]
         public void ThenIShouldSeeTheEmailInTheFormEmail()
         {
-            Assert.IsTrue(textbox_page.VerifyTheFormEmail());
+            Assert.IsTrue(textBoxPage.VerifyTheFormEmail());
         }
 
         [Then(@"I should see the Adress in the form Adress")]
         public void ThenIShouldSeeTheAdressInTheFormAdress()
         {
-            Assert.IsTrue(textbox_page.VerifyTheFormAdress());
-            
+            Assert.IsTrue(textBoxPage.VerifyTheFormAdress());
         }
     }
 
