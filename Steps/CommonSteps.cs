@@ -30,5 +30,12 @@ namespace Steps
             Assert.IsTrue(commonPage.VerifyUrl(url));
         }
 
+        [When(@"I accept cookies")]
+        public void WhenIAcceptCookies()
+        {
+            commonPage.AcceptCookies();
+        }
+
+
     }
 }
